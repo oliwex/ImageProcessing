@@ -1,0 +1,42 @@
+.background
+{
+    -fx-pref-height: 800px;
+    -fx-pref-width: 400px;
+    -fx-min-height: 800px;
+    -fx-min-width: 400px;
+    -fx-max-height: 800px;
+    -fx-max-width: 400px; 
+}
+
+.imageview
+{
+    -fx-background-size: 300px 300px;
+}
+
+.slider
+{
+    -fx-padding: 20px 20px 20px 20px;
+}
+
+.label
+{
+
+    -fx-font-size: 20px;
+    -font-family: Lato;
+}
+
+.accordion , .titledpane , .anchorpane
+{
+    -fx-pref-height: 400px;
+    -fx-pref-width: 400px;
+    -fx-min-height: 400px;
+    -fx-min-width: 400px;
+    -fx-max-height: 400px;
+    -fx-max-width: 400px; 
+}
+
+
+
+
+
+
