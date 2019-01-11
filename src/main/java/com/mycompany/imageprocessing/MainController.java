@@ -8,10 +8,15 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.SnapshotParameters;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.effect.Blend;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.effect.ColorInput;
@@ -47,23 +52,16 @@ public class MainController implements Initializable {
     
     @FXML
     private Label labelBlue;
+
+    @FXML
+    private ToggleButton buttonRed;
     
     @FXML
-    private Label redPercent;
+    private ToggleButton buttonGreen;
     
     @FXML
-    private Label greenPercent;
+    private ToggleButton buttonBlue;
     
-    @FXML
-    private Label bluePercent;
-    
-    
-    @FXML
-    private Slider sliderRed;
-    @FXML
-    private Slider sliderGreen;
-    @FXML
-    private Slider sliderBlue;
     
     private void setImage()
     {
@@ -71,25 +69,196 @@ public class MainController implements Initializable {
         Image image=new Image(file.toURI().toString());
         this.imageView.setImage(image);
     }
-    private void setGridPane() //TODO::Centering elements in gridpane
+    private void setGridPane() //TODO::Centering elements in gridpane by CSS
     {
-        this.gridpaneColors.getColumnConstraints().get(0).setPercentWidth(20);
-        this.gridpaneColors.getColumnConstraints().get(1).setPercentWidth(60);
-        this.gridpaneColors.getColumnConstraints().get(2).setPercentWidth(20);
-        
+        this.gridpaneColors.getColumnConstraints().get(0).setPercentWidth(50);
+        this.gridpaneColors.getColumnConstraints().get(1).setPercentWidth(50);
 
+        this.gridpaneColors.getColumnConstraints().get(0).setHalignment(HPos.CENTER);
+        this.gridpaneColors.getColumnConstraints().get(1).setHalignment(HPos.CENTER);
+        
+        this.gridpaneColors.getRowConstraints().get(0).setValignment(VPos.CENTER);
+        this.gridpaneColors.getRowConstraints().get(1).setValignment(VPos.CENTER);
+        this.gridpaneColors.getRowConstraints().get(2).setValignment(VPos.CENTER);
         
         this.labelRed.setText("Red");
         this.labelGreen.setText("Green");
         this.labelBlue.setText("Blue");
+
+    }
+    private void setButton()
+    {
+        this.buttonRed.setText("RED");
+        this.buttonGreen.setText("GREEN");
+        this.buttonBlue.setText("BLUE");
+    }
+    
+    private void changeImageToRed()
+    {
+        Image imageToProcess=this.imageView.getImage();
+        PixelReader pr = imageToProcess.getPixelReader();
         
-        this.redPercent.setText("0");
-        this.greenPercent.setText("0");
-        this.bluePercent.setText("0");
+        int width = (int) imageToProcess.getWidth();
+        int height = (int) imageToProcess.getHeight();
+        
+        WritableImage result = new WritableImage(width, height);
+        PixelWriter pw = result.getPixelWriter();
+        
+        for (int x = 0;  x < width;  x++) 
+        {
+            for (int y = 0; y < height;  y++) 
+            {
+                Color col = pr.getColor(x, y);
+                pw.setColor(x, y, new Color(col.getRed(), 0, 0 , 1));  
+            }
+        }
+        imageView.setImage(result);
+    }
+    private void changeImageToGreen()
+    {
+        Image imageToProcess=this.imageView.getImage();
+        PixelReader pr = imageToProcess.getPixelReader();
+        
+        int width = (int) imageToProcess.getWidth();
+        int height = (int) imageToProcess.getHeight();
+        
+        WritableImage result = new WritableImage(width, height);
+        PixelWriter pw = result.getPixelWriter();
+        
+        for (int x = 0;  x < width;  x++) 
+        {
+            for (int y = 0; y < height;  y++) 
+            {
+                Color col = pr.getColor(x, y);
+                pw.setColor(x, y, new Color(0, col.getGreen(), 0 , 1));  
+            }
+        }
+        imageView.setImage(result);
+    }
+    private void changeImageToBlue()
+    {
+        Image imageToProcess=this.imageView.getImage();
+        PixelReader pr = imageToProcess.getPixelReader();
+        
+        int width = (int) imageToProcess.getWidth();
+        int height = (int) imageToProcess.getHeight();
+        
+        WritableImage result = new WritableImage(width, height);
+        PixelWriter pw = result.getPixelWriter();
+        
+        for (int x = 0;  x < width;  x++) 
+        {
+            for (int y = 0; y < height;  y++) 
+            {
+                Color col = pr.getColor(x, y);
+                pw.setColor(x, y, new Color(0, 0, col.getBlue() , 1));  
+            }
+        }
+        imageView.setImage(result);
+    }
+
+    @FXML
+    private void onClickRed()
+    {
+        Image imageToProcess=this.imageView.getImage();
+        PixelReader pr = imageToProcess.getPixelReader();
+        
+        int width = (int) imageToProcess.getWidth();
+        int height = (int) imageToProcess.getHeight();
+        
+        WritableImage result = new WritableImage(width, height);
+        PixelWriter pw = result.getPixelWriter();
+        
+        if (this.buttonRed.isSelected())
+        {
+            for (int x = 0;  x < width;  x++) 
+            {
+                for (int y = 0; y < height;  y++) 
+                {
+                    Color col = pr.getColor(x, y);
+                    pw.setColor(x, y, new Color(col.getRed(), 0, 0 , 1));  
+                }
+            }
+            imageView.setImage(result);
+            
+            
+        }
+        else
+        {
+            this.setImage(); 
+        }
+        
         
     }
     
-
+    @FXML
+    private void onClickBlue()
+    {
+        Image imageToProcess=this.imageView.getImage();
+        PixelReader pr = imageToProcess.getPixelReader();
+        
+        int width = (int) imageToProcess.getWidth();
+        int height = (int) imageToProcess.getHeight();
+        
+        WritableImage result = new WritableImage(width, height);
+        PixelWriter pw = result.getPixelWriter();
+        
+        if (this.buttonBlue.isSelected())
+        {
+            for (int x = 0;  x < width;  x++) 
+            {
+                for (int y = 0; y < height;  y++) 
+                {
+                    Color col = pr.getColor(x, y);
+                    pw.setColor(x, y, new Color(0, 0, col.getBlue() , 1));  
+                }
+            }
+            imageView.setImage(result);
+            
+            
+        }
+        else
+        {
+            this.setImage(); 
+        }
+        
+        
+    }
+    
+    @FXML
+    private void onClickGreen()
+    {
+        Image imageToProcess=this.imageView.getImage();
+        PixelReader pr = imageToProcess.getPixelReader();
+        
+        int width = (int) imageToProcess.getWidth();
+        int height = (int) imageToProcess.getHeight();
+        
+        WritableImage result = new WritableImage(width, height);
+        PixelWriter pw = result.getPixelWriter();
+        
+        if (this.buttonGreen.isSelected())
+        {
+            for (int x = 0;  x < width;  x++) 
+            {
+                for (int y = 0; y < height;  y++) 
+                {
+                    Color col = pr.getColor(x, y);
+                    pw.setColor(x, y, new Color(0, col.getGreen(),  0, 1));  
+                }
+            }
+            imageView.setImage(result);
+            
+            
+        }
+        else
+        {
+            this.setImage(); 
+        }
+        
+        
+    }
+    /*
     
     
     private void setSlider(Slider sliderColor)
@@ -117,8 +286,8 @@ public class MainController implements Initializable {
 
                 WritableImage result = new WritableImage(width, height);
                 PixelWriter pw = result.getPixelWriter();
-                for (int x = 0;  x < width;  x++) {
-                    for (int y = 0; y < height;  y++) {
+                for (int x = 0;  x < width/2;  x++) {
+                    for (int y = 0; y < height/2;  y++) {
                         Color col = pr.getColor(x, y);
                         
                         //(double)newValue/100
@@ -141,23 +310,22 @@ public class MainController implements Initializable {
         }
         });
     }       
-    
+    */
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
         this.setImage();
-        
+        /*
         this.setSlider(this.sliderRed);
         this.setSlider(this.sliderGreen);
         this.setSlider(this.sliderBlue);
-        
-        this.setGridPane();
-        
         this.sliderListeners(sliderRed,redPercent);
         this.sliderListeners(sliderGreen,greenPercent);
         this.sliderListeners(sliderBlue,bluePercent);
-
+        */
+        this.setButton();
+        this.setGridPane();
         this.setImage();
     }
 }
