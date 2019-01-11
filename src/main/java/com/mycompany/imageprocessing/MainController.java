@@ -4,22 +4,9 @@ package com.mycompany.imageprocessing;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.geometry.HPos;
-import javafx.geometry.Pos;
-import javafx.geometry.VPos;
-import javafx.scene.Node;
-import javafx.scene.SnapshotParameters;
-import javafx.scene.control.Button;
+import javafx.fxml.*;
 import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.effect.Blend;
-import javafx.scene.effect.BlendMode;
-import javafx.scene.effect.ColorInput;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelReader;
@@ -28,11 +15,10 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 public class MainController implements Initializable {
 
-    
+
     
     @FXML
     private AnchorPane background;
@@ -71,15 +57,14 @@ public class MainController implements Initializable {
     }
     private void setGridPane() //TODO::Centering elements in gridpane by CSS
     {
-        this.gridpaneColors.getColumnConstraints().get(0).setPercentWidth(50);
-        this.gridpaneColors.getColumnConstraints().get(1).setPercentWidth(50);
 
-        this.gridpaneColors.getColumnConstraints().get(0).setHalignment(HPos.CENTER);
-        this.gridpaneColors.getColumnConstraints().get(1).setHalignment(HPos.CENTER);
+
+       Gridpane gp=new Gridpane();
+       gp.setGridPane(this.gridpaneColors);
+       
+       this.gridpaneColors=gp.getGridPane();
         
-        this.gridpaneColors.getRowConstraints().get(0).setValignment(VPos.CENTER);
-        this.gridpaneColors.getRowConstraints().get(1).setValignment(VPos.CENTER);
-        this.gridpaneColors.getRowConstraints().get(2).setValignment(VPos.CENTER);
+       
         
         this.labelRed.setText("Red");
         this.labelGreen.setText("Green");
