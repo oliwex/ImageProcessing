@@ -1,4 +1,5 @@
 com\mycompany\imageprocessing\Main.class
-com\mycompany\imageprocessing\Gridpane.class
+com\mycompany\imageprocessing\ImageProcessor.class
+com\mycompany\imageprocessing\GridpaneProcessor.class
 com\mycompany\imageprocessing\Colors.class
 com\mycompany\imageprocessing\MainController.class

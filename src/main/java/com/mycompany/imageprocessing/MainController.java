@@ -1,24 +1,19 @@
 package com.mycompany.imageprocessing;
 
 
-import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.PixelReader;
-import javafx.scene.image.PixelWriter;
-import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 
 public class MainController implements Initializable {
 
-
+    private ImageProcessor imageProcessor=new ImageProcessor();
+    private GridpaneProcessor gridpaneProcessor=new GridpaneProcessor();
     
     @FXML
     private AnchorPane background;
@@ -49,269 +44,50 @@ public class MainController implements Initializable {
     private ToggleButton buttonBlue;
     
     
-    private void setImage()
-    {
-        File file=new File("src/main/resources/img/image.jpg");
-        Image image=new Image(file.toURI().toString());
-        this.imageView.setImage(image);
-    }
+    
     private void setGridPane() //TODO::Centering elements in gridpane by CSS
     {
 
-
-       Gridpane gp=new Gridpane();
-       gp.setGridPane(this.gridpaneColors);
-       
-       this.gridpaneColors=gp.getGridPane();
+        this.gridpaneProcessor.getGridPane(this.gridpaneColors);
         
-       
-        
-        this.labelRed.setText("Red");
-        this.labelGreen.setText("Green");
-        this.labelBlue.setText("Blue");
+        this.labelRed.setText(Colors.RED.toString());
+        this.labelGreen.setText(Colors.GREEN.toString());
+        this.labelBlue.setText(Colors.BLUE.toString());
 
     }
     private void setButton()
     {
-        this.buttonRed.setText("RED");
-        this.buttonGreen.setText("GREEN");
-        this.buttonBlue.setText("BLUE");
-    }
-    
-    private void changeImageToRed()
-    {
-        Image imageToProcess=this.imageView.getImage();
-        PixelReader pr = imageToProcess.getPixelReader();
-        
-        int width = (int) imageToProcess.getWidth();
-        int height = (int) imageToProcess.getHeight();
-        
-        WritableImage result = new WritableImage(width, height);
-        PixelWriter pw = result.getPixelWriter();
-        
-        for (int x = 0;  x < width;  x++) 
-        {
-            for (int y = 0; y < height;  y++) 
-            {
-                Color col = pr.getColor(x, y);
-                pw.setColor(x, y, new Color(col.getRed(), 0, 0 , 1));  
-            }
-        }
-        imageView.setImage(result);
-    }
-    private void changeImageToGreen()
-    {
-        Image imageToProcess=this.imageView.getImage();
-        PixelReader pr = imageToProcess.getPixelReader();
-        
-        int width = (int) imageToProcess.getWidth();
-        int height = (int) imageToProcess.getHeight();
-        
-        WritableImage result = new WritableImage(width, height);
-        PixelWriter pw = result.getPixelWriter();
-        
-        for (int x = 0;  x < width;  x++) 
-        {
-            for (int y = 0; y < height;  y++) 
-            {
-                Color col = pr.getColor(x, y);
-                pw.setColor(x, y, new Color(0, col.getGreen(), 0 , 1));  
-            }
-        }
-        imageView.setImage(result);
-    }
-    private void changeImageToBlue()
-    {
-        Image imageToProcess=this.imageView.getImage();
-        PixelReader pr = imageToProcess.getPixelReader();
-        
-        int width = (int) imageToProcess.getWidth();
-        int height = (int) imageToProcess.getHeight();
-        
-        WritableImage result = new WritableImage(width, height);
-        PixelWriter pw = result.getPixelWriter();
-        
-        for (int x = 0;  x < width;  x++) 
-        {
-            for (int y = 0; y < height;  y++) 
-            {
-                Color col = pr.getColor(x, y);
-                pw.setColor(x, y, new Color(0, 0, col.getBlue() , 1));  
-            }
-        }
-        imageView.setImage(result);
+        this.buttonRed.setText(Colors.RED.toString());
+        this.buttonGreen.setText(Colors.GREEN.toString());
+        this.buttonBlue.setText(Colors.BLUE.toString());
     }
 
     @FXML
     private void onClickRed()
     {
-        Image imageToProcess=this.imageView.getImage();
-        PixelReader pr = imageToProcess.getPixelReader();
-        
-        int width = (int) imageToProcess.getWidth();
-        int height = (int) imageToProcess.getHeight();
-        
-        WritableImage result = new WritableImage(width, height);
-        PixelWriter pw = result.getPixelWriter();
-        
-        if (this.buttonRed.isSelected())
-        {
-            for (int x = 0;  x < width;  x++) 
-            {
-                for (int y = 0; y < height;  y++) 
-                {
-                    Color col = pr.getColor(x, y);
-                    pw.setColor(x, y, new Color(col.getRed(), 0, 0 , 1));  
-                }
-            }
-            imageView.setImage(result);
-            
-            
-        }
-        else
-        {
-            this.setImage(); 
-        }
-        
-        
+        this.imageView.setImage(this.imageProcessor.setColor(this.buttonRed,Colors.RED.toString())); //TODO:Steering with enums  
+    }
+
+    @FXML
+    private void onClickGreen()
+    {
+        this.imageView.setImage(this.imageProcessor.setColor(this.buttonGreen,Colors.GREEN.toString())); //TODO:Steering with enums
     }
     
     @FXML
     private void onClickBlue()
     {
-        Image imageToProcess=this.imageView.getImage();
-        PixelReader pr = imageToProcess.getPixelReader();
-        
-        int width = (int) imageToProcess.getWidth();
-        int height = (int) imageToProcess.getHeight();
-        
-        WritableImage result = new WritableImage(width, height);
-        PixelWriter pw = result.getPixelWriter();
-        
-        if (this.buttonBlue.isSelected())
-        {
-            for (int x = 0;  x < width;  x++) 
-            {
-                for (int y = 0; y < height;  y++) 
-                {
-                    Color col = pr.getColor(x, y);
-                    pw.setColor(x, y, new Color(0, 0, col.getBlue() , 1));  
-                }
-            }
-            imageView.setImage(result);
-            
-            
-        }
-        else
-        {
-            this.setImage(); 
-        }
-        
-        
+        this.imageView.setImage(this.imageProcessor.setColor(this.buttonBlue,Colors.BLUE.toString())); //TODO:Steering with enums
     }
     
-    @FXML
-    private void onClickGreen()
-    {
-        Image imageToProcess=this.imageView.getImage();
-        PixelReader pr = imageToProcess.getPixelReader();
-        
-        int width = (int) imageToProcess.getWidth();
-        int height = (int) imageToProcess.getHeight();
-        
-        WritableImage result = new WritableImage(width, height);
-        PixelWriter pw = result.getPixelWriter();
-        
-        if (this.buttonGreen.isSelected())
-        {
-            for (int x = 0;  x < width;  x++) 
-            {
-                for (int y = 0; y < height;  y++) 
-                {
-                    Color col = pr.getColor(x, y);
-                    pw.setColor(x, y, new Color(0, col.getGreen(),  0, 1));  
-                }
-            }
-            imageView.setImage(result);
-            
-            
-        }
-        else
-        {
-            this.setImage(); 
-        }
-        
-        
-    }
-    /*
-    
-    
-    private void setSlider(Slider sliderColor)
-    {
-        sliderColor.setShowTickLabels(true);
-    }
-    
-        
-    private void sliderListeners(Slider sliderColor,final Label percentLabel)
-    {
-        
-        sliderColor.valueProperty().addListener(new ChangeListener<Number>() 
-        {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) 
-            {
-                int tmp=newValue.intValue();
-                percentLabel.setText(String.format("%d", tmp));
-
-                Image imageTmp=imageView.getImage();
-
-                PixelReader pr = imageTmp.getPixelReader();
-                int width = (int) imageTmp.getWidth();
-                int height = (int) imageTmp.getHeight();
-
-                WritableImage result = new WritableImage(width, height);
-                PixelWriter pw = result.getPixelWriter();
-                for (int x = 0;  x < width/2;  x++) {
-                    for (int y = 0; y < height/2;  y++) {
-                        Color col = pr.getColor(x, y);
-                        
-                        //(double)newValue/100
-                       
-    
-    
-                        
-                        Color color=new Color(0, 0, col.getBlue() , 1);
-                        
-                        pw.setColor(x, y, color);
-                        
-                        
-                        
-                    }
-                }
-                
-
-                imageView.setImage(result);
-                
-        }
-        });
-    }       
-    */
-
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        
-        this.setImage();
-        /*
-        this.setSlider(this.sliderRed);
-        this.setSlider(this.sliderGreen);
-        this.setSlider(this.sliderBlue);
-        this.sliderListeners(sliderRed,redPercent);
-        this.sliderListeners(sliderGreen,greenPercent);
-        this.sliderListeners(sliderBlue,bluePercent);
-        */
+    public void initialize(URL location, ResourceBundle resources) 
+    {
+        this.imageProcessor.setImageIntoImageView(this.imageView);
+
         this.setButton();
         this.setGridPane();
-        this.setImage();
+
     }
 }
 

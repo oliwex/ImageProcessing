@@ -9,19 +9,9 @@ package com.mycompany.imageprocessing;
  *
  * @author Minio
  */
-public enum Colors { //TODO:Connect with main Controller
-    Red("RED"),
-    Green("Green"),
-    Blue("Blue");
+public enum Colors {
+    RED,
+    GREEN,
+    BLUE;
 
-    private String color; 
-    
-    Colors(String color)
-    {
-        this.color=color;
-    }
-    public String getColor(String color)
-    {
-        return this.color;
-    }
 }
