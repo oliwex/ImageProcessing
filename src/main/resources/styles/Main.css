@@ -23,7 +23,7 @@ GridPane  .button
 }
 
 
-.accordion , .titledpane , .anchorpane
+.titledpane
 {
     -fx-pref-height: 400px;
     -fx-pref-width: 400px;

@@ -1,93 +1,50 @@
 package com.mycompany.imageprocessing;
 
 
+import com.mycompany.imageprocessing.processors.ImageProcessor;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.*;
 import javafx.fxml.*;
-import javafx.scene.control.Label;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 
 public class MainController implements Initializable {
 
-    private ImageProcessor imageProcessor=new ImageProcessor();
-    private GridpaneProcessor gridpaneProcessor=new GridpaneProcessor();
-    
-    @FXML
-    private AnchorPane background;
+    private ImageProcessor imageProcessor=new ImageProcessor(); //TO DO::REFACTORING
     
     @FXML
     private ImageView imageView;
     
-    
     @FXML
-    private GridPane gridpaneColors;
-    
-    @FXML
-    private Label labelRed;
-    
-    @FXML
-    private Label labelGreen;
-    
-    @FXML
-    private Label labelBlue;
-
-    @FXML
-    private ToggleButton buttonRed;
-    
-    @FXML
-    private ToggleButton buttonGreen;
-    
-    @FXML
-    private ToggleButton buttonBlue;
-    
-    
-    
-    private void setGridPane() //TODO::Centering elements in gridpane by CSS
-    {
-
-        this.gridpaneProcessor.getGridPane(this.gridpaneColors);
+    private AnchorPane background;
         
-        this.labelRed.setText(Colors.RED.toString());
-        this.labelGreen.setText(Colors.GREEN.toString());
-        this.labelBlue.setText(Colors.BLUE.toString());
-
-    }
-    private void setButton()
-    {
-        this.buttonRed.setText(Colors.RED.toString());
-        this.buttonGreen.setText(Colors.GREEN.toString());
-        this.buttonBlue.setText(Colors.BLUE.toString());
-    }
-
     @FXML
-    private void onClickRed()
-    {
-        this.imageView.setImage(this.imageProcessor.setColor(this.buttonRed,Colors.RED.toString())); //TODO:Steering with enums  
-    }
-
-    @FXML
-    private void onClickGreen()
-    {
-        this.imageView.setImage(this.imageProcessor.setColor(this.buttonGreen,Colors.GREEN.toString())); //TODO:Steering with enums
-    }
+    private AnchorPane anchorHSV;
     
     @FXML
-    private void onClickBlue()
+    private AnchorPane anchorRGB;
+    
+
+    private void setFXML()
     {
-        this.imageView.setImage(this.imageProcessor.setColor(this.buttonBlue,Colors.BLUE.toString())); //TODO:Steering with enums
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/RGB.fxml"));
+            this.anchorRGB.getChildren().add((AnchorPane)loader.load());
+        } catch (IOException ex) {
+            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+
+    
     
     @Override
     public void initialize(URL location, ResourceBundle resources) 
     {
+        this.setFXML();
         this.imageProcessor.setImageIntoImageView(this.imageView);
-
-        this.setButton();
-        this.setGridPane();
-
+        
     }
 }
 
