@@ -9,8 +9,6 @@ import com.mycompany.imageprocessing.processors.GridpaneProcessor;
 import com.mycompany.imageprocessing.processors.ImageProcessor;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import com.sun.prism.paint.Color;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -26,8 +24,7 @@ import javafx.scene.layout.GridPane;
 public class RGBController implements Initializable {
 
     private final ImageProcessor imageProcessor=new ImageProcessor(); //TO DO::REFACTORING
-
-//    private ImageView imageView = null;
+    private ImageView imageView=null;
     
     @FXML
     private GridPane gridpaneRGB;
@@ -71,19 +68,19 @@ public class RGBController implements Initializable {
     @FXML
     private void onClickRed()
     {
-        MainController.mainController.imageView.setImage(imageProcessor.setColor(buttonRed,  buttonRed.getText()));
+        this.imageView.setImage(this.imageProcessor.setColor(this.buttonRed,Colors.RED.toString()));   
     }
 
     @FXML
     private void onClickGreen()
     {
-        MainController.mainController.imageView.setImage(imageProcessor.setColor(buttonGreen, buttonGreen.getText()));
+        this.imageView.setImage(this.imageProcessor.setColor(this.buttonGreen,Colors.GREEN.toString()));
     }
     
     @FXML
     private void onClickBlue()
     {
-        MainController.mainController.imageView.setImage(imageProcessor.setColor(buttonBlue, buttonBlue.getText()));
+        this.imageView.setImage(this.imageProcessor.setColor(this.buttonBlue,Colors.BLUE.toString())); 
     }
     
     /**

@@ -13,13 +13,9 @@ import javafx.scene.layout.AnchorPane;
 public class MainController implements Initializable {
 
     private ImageProcessor imageProcessor=new ImageProcessor(); //TO DO::REFACTORING
-
-    // Gleidson
-    static MainController mainController;
-    static RGBController rgbController;
     
     @FXML
-    ImageView imageView;
+    private ImageView imageView;
     
     @FXML
     private AnchorPane background;
@@ -29,18 +25,13 @@ public class MainController implements Initializable {
     
     @FXML
     private AnchorPane anchorRGB;
-
-
-    public ImageView getImageView(){
-        return imageView;
-    }
+    
 
     private void setFXML()
     {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/RGB.fxml"));
             this.anchorRGB.getChildren().add((AnchorPane)loader.load());
-            rgbController = loader.getController();
         } catch (IOException ex) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -51,7 +42,6 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) 
     {
-        mainController = this;
         this.setFXML();
         this.imageProcessor.setImageIntoImageView(this.imageView);
         
