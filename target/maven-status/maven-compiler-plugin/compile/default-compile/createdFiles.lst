@@ -1,7 +1,8 @@
-com\mycompany\imageprocessing\RGBController.class
+com\mycompany\imageprocessing\controllers\RGBController.class
 com\mycompany\imageprocessing\processors\ImageProcessor.class
-com\mycompany\imageprocessing\HSVController.class
+com\mycompany\imageprocessing\controllers\Controller.class
 com\mycompany\imageprocessing\Main.class
 com\mycompany\imageprocessing\processors\GridpaneProcessor.class
 com\mycompany\imageprocessing\Colors.class
-com\mycompany\imageprocessing\MainController.class
+com\mycompany\imageprocessing\controllers\MainController.class
+com\mycompany\imageprocessing\controllers\HSVController.class
