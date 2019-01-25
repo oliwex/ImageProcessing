@@ -46,7 +46,7 @@ public class ImageProcessor {
     private Color setColorToImage(String colorToSet,Color colorObject)
     {
         Color newColor=null;
-        
+
         if (colorToSet.equalsIgnoreCase("RED"))
         {
             newColor=new Color(colorObject.getRed(),0,0,1);
@@ -64,8 +64,10 @@ public class ImageProcessor {
     
     public Image setColor(ToggleButton buttonState,String newImageColor)
     {
-        
-        Image img=this.getImageFromFileSystem();
+//        System.out.println(buttonState + ", " + newImageColor);
+
+
+        Image img = this.getImageFromFileSystem();
         PixelReader pr = img.getPixelReader();
         
         int width = (int) img.getWidth();
@@ -81,7 +83,9 @@ public class ImageProcessor {
                 for (int y = 0; y < height;  y++) 
                 {
                     Color colorFromImage = pr.getColor(x, y);
-                    pw.setColor(x, y,this.setColorToImage(newImageColor, colorFromImage));  
+
+                    pw.setColor(x, y, this.setColorToImage(newImageColor, colorFromImage));
+
                 }
             }
 
