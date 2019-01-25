@@ -56,6 +56,7 @@ public class HSVController extends Controller implements Initializable {
         super.setButton(this.buttonSaturate,"Saturate");
         super.setButton(this.buttonValue,"Value");
     }
+    lkjasldjaskldjlajldasj
     
     /**
      * Initializes the controller class.
