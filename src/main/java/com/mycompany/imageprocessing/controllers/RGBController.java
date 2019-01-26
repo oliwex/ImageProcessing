@@ -6,6 +6,7 @@
 package com.mycompany.imageprocessing.controllers;
 
 import com.mycompany.imageprocessing.Colors;
+import com.mycompany.imageprocessing.processors.GridpaneProcessor;
 import com.mycompany.imageprocessing.processors.ImageProcessor;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,7 +26,6 @@ public class RGBController extends Controller implements Initializable
 {
 
     private final ImageProcessor imageProcessor=new ImageProcessor(); //TO DO::REFACTORING
-
     
     @FXML
     private GridPane gridpaneRGB;
@@ -51,7 +51,8 @@ public class RGBController extends Controller implements Initializable
     
     private void setGridPane() //TODO::Centering elements in gridpane by CSS
     {
-        super.setGridane(this.gridpaneRGB);
+        new GridpaneProcessor().getGridPane(this.gridpaneRGB); 
+        
         super.setLabel(this.labelRed,Colors.RED.toString());
         super.setLabel(this.labelGreen,Colors.GREEN.toString());
         super.setLabel(this.labelBlue,Colors.BLUE.toString());

@@ -6,6 +6,7 @@ package com.mycompany.imageprocessing.controllers;
  * and open the template in the editor.
  */
 
+import com.mycompany.imageprocessing.processors.GridpaneProcessor;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -22,7 +23,7 @@ import javafx.scene.layout.GridPane;
 public class HSVController extends Controller implements Initializable {
 
     @FXML
-    private GridPane gridpaneHSV;
+    private GridPane gridPaneHSV;
     
     @FXML
     private Label labelHue;
@@ -43,9 +44,11 @@ public class HSVController extends Controller implements Initializable {
     private ToggleButton buttonValue;
     
     
+    
     private void setGridPane() //TODO::Centering elements in gridpane by CSS
     {
-        super.setGridane(this.gridpaneHSV);
+        new GridpaneProcessor().getGridPane(this.gridPaneHSV); 
+        
         super.setLabel(this.labelHue,"Hue");
         super.setLabel(this.labelSaturate,"Saturate");
         super.setLabel(this.labelValue,"Value");
@@ -56,7 +59,7 @@ public class HSVController extends Controller implements Initializable {
         super.setButton(this.buttonSaturate,"Saturate");
         super.setButton(this.buttonValue,"Value");
     }
-    lkjasldjaskldjlajldasj
+
     
     /**
      * Initializes the controller class.

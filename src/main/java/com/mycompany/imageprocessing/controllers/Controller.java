@@ -8,7 +8,6 @@ package com.mycompany.imageprocessing.controllers;
 import com.mycompany.imageprocessing.processors.GridpaneProcessor;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
 /**
@@ -18,7 +17,7 @@ import javafx.scene.layout.GridPane;
 public class Controller {
     
     
-    protected void setGridane(GridPane gridpane)
+    protected void setGridPane(GridPane gridpane)
     {
         new GridpaneProcessor().getGridPane(gridpane); 
     }
