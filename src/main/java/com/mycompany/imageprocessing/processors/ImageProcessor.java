@@ -30,6 +30,7 @@ public class ImageProcessor {
         Image image=new Image(file.toURI().toString());
         return image;
     }
+    
     public void setImageIntoImageView(ImageView imgView)
     {
         imgView.setImage(this.getImageFromFileSystem());
@@ -59,14 +60,23 @@ public class ImageProcessor {
         {
             newColor=new Color(0,0,colorObject.getBlue(),1);
         }
+        else if(colorToSet.equalsIgnoreCase("HUE"))
+        {
+            newColor=new Color(colorObject.getHue(),0,0,1);
+        }
+        else if(colorToSet.equalsIgnoreCase("SATURATE"))
+        {
+            newColor=new Color(0,colorObject.getSaturation(),0,1);
+        }
+        else if(colorToSet.equalsIgnoreCase("VALUE"))
+        {
+            newColor=new Color(0,0,colorObject.getBlue(),1);
+        }
         return newColor;
     }
     
     public Image setColor(ToggleButton buttonState,String newImageColor)
     {
-//        System.out.println(buttonState + ", " + newImageColor);
-
-
         Image img = this.getImageFromFileSystem();
         PixelReader pr = img.getPixelReader();
         
@@ -74,7 +84,7 @@ public class ImageProcessor {
         int height = (int) img.getHeight();
         
         WritableImage result = new WritableImage(width, height);
-        PixelWriter pw = result.getPixelWriter();
+       PixelWriter pw = result.getPixelWriter();
 
         if (buttonState.isSelected())
         {
@@ -89,12 +99,12 @@ public class ImageProcessor {
                 }
             }
 
-           return this.convertWritableImageToImage(result);
+           return this.convertWritableImageToImage(result); 
         }
         else
         {
             
-           return this.getImageFromFileSystem();
+           return this.getImageFromFileSystem(); 
         }
     }  
 }

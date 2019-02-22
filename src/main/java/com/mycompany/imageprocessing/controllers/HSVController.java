@@ -6,7 +6,7 @@ package com.mycompany.imageprocessing.controllers;
  * and open the template in the editor.
  */
 
-import com.mycompany.imageprocessing.processors.GridpaneProcessor;
+import com.mycompany.imageprocessing.processors.ImageProcessor;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -22,8 +22,10 @@ import javafx.scene.layout.GridPane;
  */
 public class HSVController extends Controller implements Initializable {
 
+    private final ImageProcessor imageProcessor=new ImageProcessor(); //TO DO::REFACTORING
+    
     @FXML
-    private GridPane gridPaneHSV;
+    private GridPane gridpaneHSV;
     
     @FXML
     private Label labelHue;
@@ -45,29 +47,53 @@ public class HSVController extends Controller implements Initializable {
     
     
     
-    private void setGridPane() //TODO::Centering elements in gridpane by CSS
+    private void setGridPaneOnScene() //TODO::Centering elements in gridpane by CSS
     {
-        new GridpaneProcessor().getGridPane(this.gridPaneHSV); 
+        super.setGridPane(this.gridpaneHSV);
         
         super.setLabel(this.labelHue,"Hue");
         super.setLabel(this.labelSaturate,"Saturate");
         super.setLabel(this.labelValue,"Value");
     }
-    private void setButton()
+    private void setButtonOnScene()
     {
         super.setButton(this.buttonHue,"Hue");
         super.setButton(this.buttonSaturate,"Saturate");
         super.setButton(this.buttonValue,"Value");
     }
+    
+    @FXML
+    private void onClickHue()
+    {
+        System.out.println("Hue");
+    //    MainController.mainController.imageView.setImage(imageProcessor.setColor(buttonRed,  buttonRed.getText()));
+        MainController.mainController.imageView.setImage(imageProcessor.setColor(buttonHue,buttonHue.getText()));
+    }
 
+    @FXML
+    private void onClickSaturate()
+    {
+        System.out.println("Saturate");
+    //    MainController.mainController.imageView.setImage(imageProcessor.setColor(buttonGreen, buttonGreen.getText()));
+        MainController.mainController.imageView.setImage(imageProcessor.setColor(buttonSaturate,buttonSaturate.getText()));
+    }
+    
+    @FXML
+    private void onClickValue()
+    {
+        System.out.println("Value");
+    //    MainController.mainController.imageView.setImage(imageProcessor.setColor(buttonBlue, buttonBlue.getText()));
+        MainController.mainController.imageView.setImage(imageProcessor.setColor(buttonValue,buttonValue.getText()));
+    }
     
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        this.setGridPane();
-        this.setButton();
+    public void initialize(URL url, ResourceBundle rb) 
+    {
+        this.setGridPaneOnScene();
+        this.setButtonOnScene();
     }    
     
 }

@@ -8,6 +8,7 @@ package com.mycompany.imageprocessing.controllers;
 import com.mycompany.imageprocessing.Colors;
 import com.mycompany.imageprocessing.processors.GridpaneProcessor;
 import com.mycompany.imageprocessing.processors.ImageProcessor;
+import com.sun.javafx.util.Utils;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -49,15 +50,15 @@ public class RGBController extends Controller implements Initializable
     private ToggleButton buttonBlue;
     
     
-    private void setGridPane() //TODO::Centering elements in gridpane by CSS
+    private void setGridPaneOnScene() //TODO::Centering elements in gridpane by CSS
     {
-        new GridpaneProcessor().getGridPane(this.gridpaneRGB); 
+        super.setGridPane(this.gridpaneRGB);
         
         super.setLabel(this.labelRed,Colors.RED.toString());
         super.setLabel(this.labelGreen,Colors.GREEN.toString());
         super.setLabel(this.labelBlue,Colors.BLUE.toString());
     }
-    private void setButton()
+    private void setButtonOnScene()
     {
         super.setButton(this.buttonRed,Colors.RED.toString());
         super.setButton(this.buttonGreen,Colors.GREEN.toString());
@@ -79,6 +80,7 @@ public class RGBController extends Controller implements Initializable
     @FXML
     private void onClickBlue()
     {
+
         MainController.mainController.imageView.setImage(imageProcessor.setColor(buttonBlue, buttonBlue.getText()));
     }
     
@@ -87,8 +89,8 @@ public class RGBController extends Controller implements Initializable
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.setButton();
-        this.setGridPane();
+        this.setButtonOnScene();
+        this.setGridPaneOnScene();
         
     }    
     

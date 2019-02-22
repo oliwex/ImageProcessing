@@ -18,7 +18,7 @@ public class MainController implements Initializable {
     
     
     public static MainController mainController;
-
+    
     
     @FXML
     public ImageView imageView;

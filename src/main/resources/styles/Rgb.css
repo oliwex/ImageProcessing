@@ -14,7 +14,7 @@ GridPane , AnchorPane
 
 
 
-GridPane .label
+GridPane Label
 {
     -fx-font-size: 20px;
 }

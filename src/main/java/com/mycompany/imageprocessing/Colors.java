@@ -12,6 +12,9 @@ package com.mycompany.imageprocessing;
 public enum Colors {
     RED,
     GREEN,
-    BLUE;
+    BLUE,
+    HUE,
+    SATURATE,
+    VALUE;
 
 }

@@ -8,22 +8,12 @@
     -fx-max-width: 400px; 
 }
 
-.imageview
+ImageView
 {
     -fx-background-size: 300px 300px;
 }
 
-GridPane .label
-{
-    -fx-font-size: 20px;
-}
-GridPane  .button
-{
-
-}
-
-
-.titledpane
+AnchorPane ,TitledPane
 {
     -fx-pref-height: 400px;
     -fx-pref-width: 400px;
@@ -32,6 +22,11 @@ GridPane  .button
     -fx-max-height: 400px;
     -fx-max-width: 400px; 
 }
+
+
+
+
+
 
 
 
