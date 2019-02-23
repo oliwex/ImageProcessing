@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../styles/Hsv.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.imageprocessing.controllers.HSVController">
    <children>
       <GridPane fx:id="gridpaneHSV" gridLinesVisible="true" prefHeight="400.0" prefWidth="600.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="10.0" prefWidth="98.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="304.0" minWidth="10.0" prefWidth="302.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -23,9 +24,24 @@
             <Label fx:id="labelHue" text="Label" />
             <Label fx:id="labelSaturate" text="Label" GridPane.rowIndex="1" />
             <Label fx:id="labelValue" text="Label" GridPane.rowIndex="2" />
-            <ToggleButton fx:id="buttonHue" mnemonicParsing="false" onMouseClicked="#onClickHue" text="ToggleButton" GridPane.columnIndex="1" />
-            <ToggleButton fx:id="buttonSaturate" mnemonicParsing="false" onMouseClicked="#onClickSaturate" text="ToggleButton" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ToggleButton fx:id="buttonValue" mnemonicParsing="false" onMouseClicked="#onClickValue" text="ToggleButton" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+               <children>
+                  <Slider fx:id="sliderHue" />
+                  <Label fx:id="labelValueHue" text="Label" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Slider fx:id="sliderSaturation" />
+                  <Label fx:id="labelValueSaturate" text="Label" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <Slider fx:id="sliderValue" />
+                  <Label fx:id="labelValueValue" text="Label" />
+               </children>
+            </VBox>
          </children>
       </GridPane>
    </children>

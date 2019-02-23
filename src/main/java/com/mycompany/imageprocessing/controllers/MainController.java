@@ -11,9 +11,9 @@ import javafx.fxml.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
-public class MainController implements Initializable {
+public class MainController extends Controller implements Initializable {
 
-    private ImageProcessor imageProcessor=new ImageProcessor(); //TO DO::REFACTORING
+    
 
     
     
@@ -66,8 +66,7 @@ public class MainController implements Initializable {
         this.setTitledPaneOne();
         this.setTitledPaneTwo();
         
-        this.imageProcessor.setImageIntoImageView(this.imageView);
-        
+        super.imageProcessor.setImageIntoImageView(this.imageView);
     }
 }
 

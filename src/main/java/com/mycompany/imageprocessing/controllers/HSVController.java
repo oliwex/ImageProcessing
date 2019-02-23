@@ -6,14 +6,15 @@ package com.mycompany.imageprocessing.controllers;
  * and open the template in the editor.
  */
 
-import com.mycompany.imageprocessing.processors.ImageProcessor;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.ToggleButton;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.GridPane;
+import javafx.beans.value.ChangeListener;
 
 /**
  * FXML Controller class
@@ -22,7 +23,7 @@ import javafx.scene.layout.GridPane;
  */
 public class HSVController extends Controller implements Initializable {
 
-    private final ImageProcessor imageProcessor=new ImageProcessor(); //TO DO::REFACTORING
+    
     
     @FXML
     private GridPane gridpaneHSV;
@@ -37,17 +38,26 @@ public class HSVController extends Controller implements Initializable {
     private Label labelValue;
 
     @FXML
-    private ToggleButton buttonHue;
+    private Label labelValueHue;
     
     @FXML
-    private ToggleButton buttonSaturate;
+    private Label labelValueSaturate;
     
     @FXML
-    private ToggleButton buttonValue;
+    private Label labelValueValue;
+
+    @FXML
+    private Slider sliderHue;
+    
+    @FXML
+    private Slider sliderSaturation;
+    
+    @FXML
+    private Slider sliderValue;
     
     
     
-    private void setGridPaneOnScene() //TODO::Centering elements in gridpane by CSS
+    private void setGridPaneOnScene()
     {
         super.setGridPane(this.gridpaneHSV);
         
@@ -55,36 +65,26 @@ public class HSVController extends Controller implements Initializable {
         super.setLabel(this.labelSaturate,"Saturate");
         super.setLabel(this.labelValue,"Value");
     }
-    private void setButtonOnScene()
-    {
-        super.setButton(this.buttonHue,"Hue");
-        super.setButton(this.buttonSaturate,"Saturate");
-        super.setButton(this.buttonValue,"Value");
-    }
     
-    @FXML
-    private void onClickHue()
+    private void setSlider(Slider sliderToSet,Label labelToSet)
     {
-        System.out.println("Hue");
-    //    MainController.mainController.imageView.setImage(imageProcessor.setColor(buttonRed,  buttonRed.getText()));
-        MainController.mainController.imageView.setImage(imageProcessor.setColor(buttonHue,buttonHue.getText()));
-    }
+        sliderToSet.setMin(0);
+        sliderToSet.setMax(100);
+       // sliderToSet.setValue(50);
+        sliderToSet.setShowTickLabels(true);
+        sliderToSet.setShowTickMarks(true);
 
-    @FXML
-    private void onClickSaturate()
-    {
-        System.out.println("Saturate");
-    //    MainController.mainController.imageView.setImage(imageProcessor.setColor(buttonGreen, buttonGreen.getText()));
-        MainController.mainController.imageView.setImage(imageProcessor.setColor(buttonSaturate,buttonSaturate.getText()));
+        sliderToSet.valueProperty().addListener(
+        new ChangeListener<Number>()
+        {
+           @Override
+           public void changed(ObservableValue<? extends Number> observable, Number oldValue,Number newValue)
+            {
+                labelToSet.setText(String.valueOf(newValue));
+            }
+        });
     }
     
-    @FXML
-    private void onClickValue()
-    {
-        System.out.println("Value");
-    //    MainController.mainController.imageView.setImage(imageProcessor.setColor(buttonBlue, buttonBlue.getText()));
-        MainController.mainController.imageView.setImage(imageProcessor.setColor(buttonValue,buttonValue.getText()));
-    }
     
     /**
      * Initializes the controller class.
@@ -93,7 +93,18 @@ public class HSVController extends Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) 
     {
         this.setGridPaneOnScene();
-        this.setButtonOnScene();
+        this.setSlider(this.sliderHue,this.labelValueHue);
+        this.setSlider(this.sliderSaturation,this.labelValueSaturate);
+        this.setSlider(this.sliderValue,this.labelValueValue);
+        
+        
     }    
     
 }
+/*
+MainController.mainController.imageView.setPreserveRatio(true);
+        ColorAdjust ca=new ColorAdjust();
+
+        ca.setInput(ca);
+        MainController.mainController.imageView.setEffect(ca);
+*/

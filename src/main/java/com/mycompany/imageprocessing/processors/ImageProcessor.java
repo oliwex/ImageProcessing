@@ -62,7 +62,7 @@ public class ImageProcessor {
         }
         else if(colorToSet.equalsIgnoreCase("HUE"))
         {
-            newColor=new Color(colorObject.getHue(),0,0,1);
+            newColor=new Color(colorObject.getHue()/360,0,0,1);
         }
         else if(colorToSet.equalsIgnoreCase("SATURATE"))
         {
@@ -70,7 +70,7 @@ public class ImageProcessor {
         }
         else if(colorToSet.equalsIgnoreCase("VALUE"))
         {
-            newColor=new Color(0,0,colorObject.getBlue(),1);
+            newColor=new Color(0,0,Math.max(Math.max(colorObject.getRed(), colorObject.getGreen()),colorObject.getBlue()),1);
         }
         return newColor;
     }

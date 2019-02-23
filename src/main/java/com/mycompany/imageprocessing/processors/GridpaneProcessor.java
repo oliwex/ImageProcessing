@@ -27,7 +27,7 @@ public class GridpaneProcessor
         gridpaneToStyle.getRowConstraints().get(1).setValignment(verticalPosition);
         gridpaneToStyle.getRowConstraints().get(2).setValignment(verticalPosition);
         
-        gridpaneToStyle.getColumnConstraints().get(0).setPercentWidth(50);
-        gridpaneToStyle.getColumnConstraints().get(1).setPercentWidth(50);
+        gridpaneToStyle.getColumnConstraints().get(0).setPercentWidth(30);
+        gridpaneToStyle.getColumnConstraints().get(1).setPercentWidth(70);
     }
 }

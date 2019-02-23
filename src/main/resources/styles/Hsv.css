@@ -1,7 +1,16 @@
 /*
  * Empty Stylesheet file.
  */
-
+VBox
+{
+    -fx-alignment: center;
+}
+Slider
+{
+    -fx-max-width: 250px;
+    -fx-pref-width: 250px;
+    
+}
 GridPane , AnchorPane
 {
     -fx-pref-height: 400px;
@@ -14,7 +23,7 @@ GridPane , AnchorPane
 
 
 
-GridPane .label
+Label
 {
     -fx-font-size: 20px;
 }

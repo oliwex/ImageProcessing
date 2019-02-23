@@ -6,10 +6,9 @@
 package com.mycompany.imageprocessing.controllers;
 
 import com.mycompany.imageprocessing.processors.GridpaneProcessor;
-import java.io.File;
+import com.mycompany.imageprocessing.processors.ImageProcessor;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 
 /**
@@ -18,14 +17,7 @@ import javafx.scene.layout.GridPane;
  */
 public class Controller {
     
-    private final String FILEPATH="src/main/resources/img/image.jpg";
-    
-    protected Image getImageFromFileSystem() //for 1 time
-    {
-        File file=new File(FILEPATH);
-        Image image=new Image(file.toURI().toString());
-        return image;
-    }
+    protected ImageProcessor imageProcessor=new ImageProcessor();
     
     protected void setGridPane(GridPane gridpane)
     {

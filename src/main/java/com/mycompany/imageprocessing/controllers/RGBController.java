@@ -25,8 +25,6 @@ import javafx.scene.layout.GridPane;
  */
 public class RGBController extends Controller implements Initializable 
 {
-
-    private final ImageProcessor imageProcessor=new ImageProcessor(); //TO DO::REFACTORING
     
     @FXML
     private GridPane gridpaneRGB;
@@ -68,20 +66,20 @@ public class RGBController extends Controller implements Initializable
     @FXML
     private void onClickRed()
     {
-        MainController.mainController.imageView.setImage(imageProcessor.setColor(buttonRed,  buttonRed.getText()));
+        MainController.mainController.imageView.setImage(super.imageProcessor.setColor(buttonRed,  buttonRed.getText()));
     }
 
     @FXML
     private void onClickGreen()
     {
-        MainController.mainController.imageView.setImage(imageProcessor.setColor(buttonGreen, buttonGreen.getText()));
+        MainController.mainController.imageView.setImage(super.imageProcessor.setColor(buttonGreen, buttonGreen.getText()));
     }
     
     @FXML
     private void onClickBlue()
     {
 
-        MainController.mainController.imageView.setImage(imageProcessor.setColor(buttonBlue, buttonBlue.getText()));
+        MainController.mainController.imageView.setImage(super.imageProcessor.setColor(buttonBlue, buttonBlue.getText()));
     }
     
     /**
