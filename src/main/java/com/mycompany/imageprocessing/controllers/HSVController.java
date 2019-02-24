@@ -8,6 +8,8 @@ package com.mycompany.imageprocessing.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.GridPane;
 import javafx.beans.value.ChangeListener;
+import javafx.scene.effect.ColorAdjust;
 
 /**
  * FXML Controller class
@@ -66,24 +69,18 @@ public class HSVController extends Controller implements Initializable {
         super.setLabel(this.labelValue,"Value");
     }
     
-    private void setSlider(Slider sliderToSet,Label labelToSet)
+    
+    private void setLabel(Label labelToSet)
+    {
+        labelToSet.setText("0");
+    }
+    private void setSlider(Slider sliderToSet)
     {
         sliderToSet.setMin(0);
         sliderToSet.setMax(100);
-       // sliderToSet.setValue(50);
         sliderToSet.setShowTickLabels(true);
         sliderToSet.setShowTickMarks(true);
-
-        sliderToSet.valueProperty().addListener(
-        new ChangeListener<Number>()
-        {
-           @Override
-           public void changed(ObservableValue<? extends Number> observable, Number oldValue,Number newValue)
-            {
-                labelToSet.setText(String.valueOf(newValue));
-            }
-        });
-    }
+    }    
     
     
     /**
@@ -92,19 +89,60 @@ public class HSVController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        this.setGridPaneOnScene();
-        this.setSlider(this.sliderHue,this.labelValueHue);
-        this.setSlider(this.sliderSaturation,this.labelValueSaturate);
-        this.setSlider(this.sliderValue,this.labelValueValue);
         
-        
-    }    
-    
-}
-/*
-MainController.mainController.imageView.setPreserveRatio(true);
-        ColorAdjust ca=new ColorAdjust();
+            this.setGridPaneOnScene();
+            this.setSlider(this.sliderHue);
+            this.setSlider(this.sliderSaturation);
+            this.setSlider(this.sliderValue);
+            
+            this.setLabel(this.labelValueHue);
+            this.setLabel(this.labelValueSaturate);
+            this.setLabel(this.labelValueValue);
+            
+            
+            sliderHue.valueProperty().addListener(
+                    new ChangeListener<Number>()
+                    {
+                        @Override
+                        public void changed(ObservableValue<? extends Number> observable, Number oldValue,Number newValue)
+                        {
+                            labelValueHue.setText(String.valueOf(newValue));
+                            ColorAdjust ca=new ColorAdjust();
+                            ca.setHue(((double) newValue)/100);
+                            MainController.mainController.imageView.setEffect(ca);
+                        }
+                    });
+            
+            sliderSaturation.valueProperty().addListener(
+                    new ChangeListener<Number>()
+                    {
+                        @Override
+                        public void changed(ObservableValue<? extends Number> observable, Number oldValue,Number newValue)
+                        {
+                            labelValueSaturate.setText(String.valueOf(newValue));
+                            ColorAdjust ca=new ColorAdjust();
+                            ca.setSaturation(((double) newValue)/100);
+                            MainController.mainController.imageView.setEffect(ca);
+                        }
+                    });
+                sliderValue.valueProperty().addListener(
+                    new ChangeListener<Number>()
+                    {
+                        @Override
+                        public void changed(ObservableValue<? extends Number> observable, Number oldValue,Number newValue)
+                        {
+                            labelValueValue.setText(String.valueOf(newValue));
+                            ColorAdjust ca=new ColorAdjust();
+                            ca.setBrightness(((double) newValue)/100);
+                            MainController.mainController.imageView.setEffect(ca);
+                        }
+                    });
 
-        ca.setInput(ca);
-        MainController.mainController.imageView.setEffect(ca);
-*/
+            
+            
+
+        }       
+    }
+
+        
+
