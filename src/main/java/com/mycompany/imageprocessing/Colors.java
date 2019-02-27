@@ -10,11 +10,15 @@ package com.mycompany.imageprocessing;
  * @author Minio
  */
 public enum Colors {
-    RED,
-    GREEN,
-    BLUE,
-    HUE,
-    SATURATE,
-    VALUE;
+    Red,
+    Green,
+    Blue,
+    Hue,
+    Saturate,
+    Value,
+    Dark,
+    Bright,
+    Greyscale,
+    Invert
 
 }

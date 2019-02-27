@@ -1,12 +1,10 @@
-com\mycompany\imageprocessing\controllers\RGBController.class
+com\mycompany\imageprocessing\controllers\HsvController.class
 com\mycompany\imageprocessing\processors\ImageProcessor.class
 com\mycompany\imageprocessing\controllers\Controller.class
-com\mycompany\imageprocessing\controllers\HSVController$2.class
+com\mycompany\imageprocessing\controllers\RgbController.class
 com\mycompany\imageprocessing\Main.class
-com\mycompany\imageprocessing\controllers\MISCController.class
-com\mycompany\imageprocessing\controllers\HSVController$1.class
 com\mycompany\imageprocessing\processors\GridpaneProcessor.class
 com\mycompany\imageprocessing\Colors.class
-com\mycompany\imageprocessing\controllers\HSVController$3.class
+com\mycompany\imageprocessing\controllers\MiscController.class
 com\mycompany\imageprocessing\controllers\MainController.class
-com\mycompany\imageprocessing\controllers\HSVController.class
+com\mycompany\imageprocessing\controllers\HsvController$1.class

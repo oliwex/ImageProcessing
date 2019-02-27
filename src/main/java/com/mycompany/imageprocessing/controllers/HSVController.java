@@ -6,6 +6,7 @@ package com.mycompany.imageprocessing.controllers;
  * and open the template in the editor.
  */
 
+import com.mycompany.imageprocessing.Colors;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -24,9 +25,9 @@ import javafx.scene.effect.ColorAdjust;
  *
  * @author Minio
  */
-public class HSVController extends Controller implements Initializable {
+public class HsvController extends Controller implements Initializable {
 
-    
+
     
     @FXML
     private GridPane gridpaneHSV;
@@ -62,26 +63,41 @@ public class HSVController extends Controller implements Initializable {
     
     private void setGridPaneOnScene()
     {
-        super.setGridPane(this.gridpaneHSV);
+        super.setGridPane(this.gridpaneHSV,3);
         
-        super.setLabel(this.labelHue,"Hue");
-        super.setLabel(this.labelSaturate,"Saturate");
-        super.setLabel(this.labelValue,"Value");
+        super.setLabel(this.labelHue,Colors.Hue.toString());
+        super.setLabel(this.labelSaturate,Colors.Saturate.toString());
+        super.setLabel(this.labelValue,Colors.Value.toString());
     }
     
-    
-    private void setLabel(Label labelToSet)
+   
+    private void sliderListener(Slider sliderColor,Label labelValueColor,ColorAdjust ca)
     {
-        labelToSet.setText("0");
+        sliderColor.valueProperty().addListener(
+            new ChangeListener<Number>()
+            {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue,Number newValue)
+            {
+                labelValueColor.setText(String.valueOf(newValue));
+                
+                double valueToSet=(double)newValue/100;
+                
+                if (sliderColor.equals(sliderHue))
+                {
+                   ca.setHue(valueToSet); 
+                }
+                else if(sliderColor.equals(sliderSaturation))
+                {
+                    ca.setSaturation(valueToSet);
+                }
+                else if (sliderColor.equals(sliderValue))
+                {
+                    ca.setBrightness(valueToSet);
+                }
+            }
+        });
     }
-    private void setSlider(Slider sliderToSet)
-    {
-        sliderToSet.setMin(0);
-        sliderToSet.setMax(100);
-        sliderToSet.setShowTickLabels(true);
-        sliderToSet.setShowTickMarks(true);
-    }    
-    
     
     /**
      * Initializes the controller class.
@@ -91,54 +107,23 @@ public class HSVController extends Controller implements Initializable {
     {
         
             this.setGridPaneOnScene();
-            this.setSlider(this.sliderHue);
-            this.setSlider(this.sliderSaturation);
-            this.setSlider(this.sliderValue);
             
-            this.setLabel(this.labelValueHue);
-            this.setLabel(this.labelValueSaturate);
-            this.setLabel(this.labelValueValue);
+            super.setSlider(this.sliderHue);
+            super.setSlider(this.sliderSaturation);
+            super.setSlider(this.sliderValue);
+            
+            super.setLabelToZero(this.labelValueHue);
+            super.setLabelToZero(this.labelValueSaturate);
+            super.setLabelToZero(this.labelValueValue);
             
             
-            sliderHue.valueProperty().addListener(
-                    new ChangeListener<Number>()
-                    {
-                        @Override
-                        public void changed(ObservableValue<? extends Number> observable, Number oldValue,Number newValue)
-                        {
-                            labelValueHue.setText(String.valueOf(newValue));
-                            ColorAdjust ca=new ColorAdjust();
-                            ca.setHue(((double) newValue)/100);
-                            MainController.mainController.imageView.setEffect(ca);
-                        }
-                    });
+            ColorAdjust ca=new ColorAdjust();
             
-            sliderSaturation.valueProperty().addListener(
-                    new ChangeListener<Number>()
-                    {
-                        @Override
-                        public void changed(ObservableValue<? extends Number> observable, Number oldValue,Number newValue)
-                        {
-                            labelValueSaturate.setText(String.valueOf(newValue));
-                            ColorAdjust ca=new ColorAdjust();
-                            ca.setSaturation(((double) newValue)/100);
-                            MainController.mainController.imageView.setEffect(ca);
-                        }
-                    });
-                sliderValue.valueProperty().addListener(
-                    new ChangeListener<Number>()
-                    {
-                        @Override
-                        public void changed(ObservableValue<? extends Number> observable, Number oldValue,Number newValue)
-                        {
-                            labelValueValue.setText(String.valueOf(newValue));
-                            ColorAdjust ca=new ColorAdjust();
-                            ca.setBrightness(((double) newValue)/100);
-                            MainController.mainController.imageView.setEffect(ca);
-                        }
-                    });
+            this.sliderListener(sliderSaturation,labelValueSaturate,ca);
+            this.sliderListener(sliderValue,labelValueValue,ca);       
+            this.sliderListener(sliderHue,labelValueHue,ca); 
 
-            
+            MainController.mainController.imageView.setEffect(ca);
             
 
         }       

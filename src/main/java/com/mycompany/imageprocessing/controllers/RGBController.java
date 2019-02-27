@@ -23,7 +23,7 @@ import javafx.scene.layout.GridPane;
  *
  * @author Minio
  */
-public class RGBController extends Controller implements Initializable 
+public class RgbController extends Controller implements Initializable 
 {
     
     @FXML
@@ -50,17 +50,17 @@ public class RGBController extends Controller implements Initializable
     
     private void setGridPaneOnScene() //TODO::Centering elements in gridpane by CSS
     {
-        super.setGridPane(this.gridpaneRGB);
+        super.setGridPane(this.gridpaneRGB,3);
         
-        super.setLabel(this.labelRed,Colors.RED.toString());
-        super.setLabel(this.labelGreen,Colors.GREEN.toString());
-        super.setLabel(this.labelBlue,Colors.BLUE.toString());
+        super.setLabel(this.labelRed,Colors.Red.toString());
+        super.setLabel(this.labelGreen,Colors.Green.toString());
+        super.setLabel(this.labelBlue,Colors.Blue.toString());
     }
     private void setButtonOnScene()
     {
-        super.setButton(this.buttonRed,Colors.RED.toString());
-        super.setButton(this.buttonGreen,Colors.GREEN.toString());
-        super.setButton(this.buttonBlue,Colors.BLUE.toString());
+        super.setButton(this.buttonRed,Colors.Red.toString());
+        super.setButton(this.buttonGreen,Colors.Green.toString());
+        super.setButton(this.buttonBlue,Colors.Blue.toString());
     }
     
     @FXML
