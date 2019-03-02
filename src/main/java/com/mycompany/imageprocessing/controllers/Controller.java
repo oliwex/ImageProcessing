@@ -25,9 +25,9 @@ public class Controller {
     
     protected ImageProcessor imageProcessor=new ImageProcessor();
     
-    protected void setGridPane(GridPane gridpane,int rows)
+    protected void setGridPane(GridPane gridpane)
     {
-        new GridpaneProcessor().getGridPane(gridpane,rows); 
+        new GridpaneProcessor().getGridPane(gridpane); 
     }
     protected void setLabel(Label label,String text)
     {
@@ -55,7 +55,7 @@ public class Controller {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(pathToFxml));
             anchorToSet.getChildren().add((AnchorPane)loader.load());
-            RgbController rgbController = loader.getController();
+            Controller customController = loader.getController();
             
         } catch (IOException ex) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);

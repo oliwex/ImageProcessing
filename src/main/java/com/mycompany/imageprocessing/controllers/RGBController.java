@@ -50,7 +50,7 @@ public class RgbController extends Controller implements Initializable
     
     private void setGridPaneOnScene() //TODO::Centering elements in gridpane by CSS
     {
-        super.setGridPane(this.gridpaneRGB,3);
+        super.setGridPane(this.gridpaneRGB);
         
         super.setLabel(this.labelRed,Colors.Red.toString());
         super.setLabel(this.labelGreen,Colors.Green.toString());

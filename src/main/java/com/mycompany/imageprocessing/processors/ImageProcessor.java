@@ -72,6 +72,16 @@ public class ImageProcessor {
         {
             newColor=new Color(0,0,Math.max(Math.max(colorObject.getRed(), colorObject.getGreen()),colorObject.getBlue()),1);
         }
+        else if(colorToSet.equalsIgnoreCase("GREYSCALE"))
+        {
+            newColor=new Color(colorObject.getRed(),colorObject.getGreen(),colorObject.getBlue(),1).grayscale();
+        }
+        else if(colorToSet.equalsIgnoreCase("INVERT"))
+        {
+            newColor=new Color(colorObject.getRed(),colorObject.getGreen(),colorObject.getBlue(),1).invert();
+            
+        }
+        
         return newColor;
     }
     
@@ -84,7 +94,7 @@ public class ImageProcessor {
         int height = (int) img.getHeight();
         
         WritableImage result = new WritableImage(width, height);
-       PixelWriter pw = result.getPixelWriter();
+        PixelWriter pw = result.getPixelWriter();
 
         if (buttonState.isSelected())
         {

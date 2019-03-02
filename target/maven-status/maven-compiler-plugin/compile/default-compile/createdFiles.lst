@@ -6,5 +6,6 @@ com\mycompany\imageprocessing\Main.class
 com\mycompany\imageprocessing\processors\GridpaneProcessor.class
 com\mycompany\imageprocessing\Colors.class
 com\mycompany\imageprocessing\controllers\MiscController.class
+com\mycompany\imageprocessing\controllers\MiscController$1.class
 com\mycompany\imageprocessing\controllers\MainController.class
 com\mycompany\imageprocessing\controllers\HsvController$1.class

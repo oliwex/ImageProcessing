@@ -9,8 +9,6 @@ package com.mycompany.imageprocessing.controllers;
 import com.mycompany.imageprocessing.Colors;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,10 +23,10 @@ import javafx.scene.effect.ColorAdjust;
  *
  * @author Minio
  */
-public class HsvController extends Controller implements Initializable {
+public class HsvController extends Controller implements Initializable 
+{
 
 
-    
     @FXML
     private GridPane gridpaneHSV;
     
@@ -63,11 +61,17 @@ public class HsvController extends Controller implements Initializable {
     
     private void setGridPaneOnScene()
     {
-        super.setGridPane(this.gridpaneHSV,3);
+        super.setGridPane(this.gridpaneHSV);
         
         super.setLabel(this.labelHue,Colors.Hue.toString());
         super.setLabel(this.labelSaturate,Colors.Saturate.toString());
         super.setLabel(this.labelValue,Colors.Value.toString());
+    }
+    private void setSliderOnScene()
+    {
+        super.setSlider(this.sliderHue);
+        super.setSlider(this.sliderSaturation);
+        super.setSlider(this.sliderValue);
     }
     
    
@@ -98,6 +102,17 @@ public class HsvController extends Controller implements Initializable {
             }
         });
     }
+    private void sliderAdjuster()
+    {
+        ColorAdjust ca=new ColorAdjust();
+        
+        this.sliderListener(sliderHue,labelValueHue,ca);
+        this.sliderListener(sliderSaturation,labelValueSaturate,ca);
+        this.sliderListener(sliderValue,labelValueValue,ca);       
+            
+        MainController.mainController.imageView.setEffect(ca);
+    }
+    
     
     /**
      * Initializes the controller class.
@@ -105,25 +120,16 @@ public class HsvController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
+        this.setGridPaneOnScene();
+        this.setSliderOnScene();
+        this.sliderAdjuster();
         
-            this.setGridPaneOnScene();
-            
-            super.setSlider(this.sliderHue);
-            super.setSlider(this.sliderSaturation);
-            super.setSlider(this.sliderValue);
-            
-            super.setLabelToZero(this.labelValueHue);
-            super.setLabelToZero(this.labelValueSaturate);
-            super.setLabelToZero(this.labelValueValue);
+        super.setLabelToZero(this.labelValueHue);
+        super.setLabelToZero(this.labelValueSaturate);
+        super.setLabelToZero(this.labelValueValue);
             
             
-            ColorAdjust ca=new ColorAdjust();
             
-            this.sliderListener(sliderSaturation,labelValueSaturate,ca);
-            this.sliderListener(sliderValue,labelValueValue,ca);       
-            this.sliderListener(sliderHue,labelValueHue,ca); 
-
-            MainController.mainController.imageView.setEffect(ca);
             
 
         }       
