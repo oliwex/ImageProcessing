@@ -19,6 +19,9 @@ public enum Colors {
     Dark,
     Bright,
     Greyscale,
-    Invert
+    Invert,
+    Glow,
+    Blur,
+    Sepia
 
 }

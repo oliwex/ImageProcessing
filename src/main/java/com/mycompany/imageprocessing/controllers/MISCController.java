@@ -69,26 +69,8 @@ public class MiscController extends Controller implements Initializable {
    
     
     
-    private void sliderListener(Slider sliderColor,Label labelValueColor,ColorAdjust ca)
-    {
-        sliderColor.valueProperty().addListener(
-            new ChangeListener<Number>()
-            {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue,Number newValue)
-            {
-                labelValueColor.setText(String.valueOf(newValue));
-                double valueToSet=(double)newValue/100;
-                ca.setBrightness(valueToSet);
-            }
-        });
-    }
-    private void sliderAdjuster()
-    {
-        ColorAdjust ca=new ColorAdjust();
-        this.sliderListener(this.sliderBrighter,this.labelValueBrighter,ca);
-        MainController.mainController.imageView.setEffect(ca);
-    }
+    
+    
     
     @FXML
     private void onClickGreyscale()
@@ -110,8 +92,25 @@ public class MiscController extends Controller implements Initializable {
     {
         this.setGridPaneOnScene();
         this.setButtonOnScene();
+        
         super.setSlider(this.sliderBrighter);
-        this.sliderAdjuster();
+        
+        ColorAdjust colorAdjust=new ColorAdjust();
+        
+        this.sliderBrighter.valueProperty().addListener(
+            new ChangeListener<Number>()
+            {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue,Number newValue)
+            {
+                labelValueBrighter.setText(String.valueOf(newValue));
+                double valueToSet=(double)newValue/100;
+                colorAdjust.setBrightness(valueToSet);
+                MainController.mainController.imageView.setEffect(colorAdjust);
+            }
+        });
+        
+        
 
         
         

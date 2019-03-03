@@ -9,138 +9,137 @@ package com.mycompany.imageprocessing.controllers;
 import com.mycompany.imageprocessing.Colors;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
-import javafx.scene.layout.GridPane;
-import javafx.beans.value.ChangeListener;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.Effect;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.effect.Glow;
 import javafx.scene.effect.SepiaTone;
+import javafx.scene.layout.GridPane;
 
 /**
  * FXML Controller class
  *
  * @author Minio
  */
-public class HsvController extends Controller implements Initializable 
-{
-
-
-    @FXML
-    private GridPane gridpaneHSV;
+//GLow,GAussian Blur,Sepia
+public class EffectController extends Controller implements Initializable {
     
     @FXML
-    private Label labelHue;
+    private GridPane gridpaneEffect;
     
     @FXML
-    private Label labelSaturate;
+    private Label labelGlow;
     
     @FXML
-    private Label labelValue;
-
-    @FXML
-    private Label labelValueHue;
+    private Label labelBlur;
     
     @FXML
-    private Label labelValueSaturate;
-    
-    @FXML
-    private Label labelValueValue;
+    private Label labelSepia;
 
     @FXML
-    private Slider sliderHue;
+    private Label labelValueGlow;
     
     @FXML
-    private Slider sliderSaturation;
+    private Label labelValueBlur;
     
     @FXML
-    private Slider sliderValue;
+    private Label labelValueSepia;
+
+    @FXML
+    private Slider sliderGlow;
     
+    @FXML
+    private Slider sliderBlur;
     
+    @FXML
+    private Slider sliderSepia;
     
     private void setGridPaneOnScene()
     {
-        super.setGridPane(this.gridpaneHSV);
+        super.setGridPane(this.gridpaneEffect);
         
-        super.setLabel(this.labelHue,Colors.Hue.toString());
-        super.setLabel(this.labelSaturate,Colors.Saturate.toString());
-        super.setLabel(this.labelValue,Colors.Value.toString());
+        super.setLabel(this.labelGlow,Colors.Glow.toString());
+        super.setLabel(this.labelBlur,Colors.Blur.toString());
+        super.setLabel(this.labelSepia,Colors.Sepia.toString());
     }
     private void setSliderOnScene()
     {
-        super.setSlider(this.sliderHue);
-        super.setSlider(this.sliderSaturation);
-        super.setSlider(this.sliderValue);
+        super.setSlider(this.sliderGlow);
+        super.setSlider(this.sliderBlur);
+        super.setSlider(this.sliderSepia);
     }
-    
-   
-   
     
     
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) 
-    {
+    public void initialize(URL url, ResourceBundle rb) {
         this.setGridPaneOnScene();
         this.setSliderOnScene();
         
-        ColorAdjust ca=new ColorAdjust();
+        super.setSlider(this.sliderGlow);
+        super.setSlider(this.sliderBlur);
+        super.setSlider(this.sliderSepia);
         
-        this.sliderHue.valueProperty().addListener(
+
+        Glow glow=new Glow();
+        
+        this.sliderGlow.valueProperty().addListener(
             new ChangeListener<Number>()
             {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue,Number newValue)
             {
                 
-                labelValueHue.setText(String.valueOf(newValue));
+                labelValueGlow.setText(String.valueOf(newValue));
                 double valueToSet=(double)newValue/100;
-                ca.setHue(valueToSet);
-                MainController.mainController.imageView.setEffect(ca);
+                glow.setLevel(valueToSet);
+                MainController.mainController.imageView.setEffect(glow);
             }
         });
         
+        GaussianBlur blur=new GaussianBlur();
         
-        this.sliderSaturation.valueProperty().addListener(
+        this.sliderBlur.valueProperty().addListener(
             new ChangeListener<Number>()
             {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue,Number newValue)
             {
-                labelValueSaturate.setText(String.valueOf(newValue));
+                labelValueBlur.setText(String.valueOf(newValue));
                 double valueToSet=(double)newValue/100;
-                ca.setSaturation(valueToSet);
-                MainController.mainController.imageView.setEffect(ca);
+                blur.setRadius(valueToSet);
+                MainController.mainController.imageView.setEffect(blur);
             }
         });
         
+        SepiaTone sepia = new SepiaTone(); 
         
-        this.sliderValue.valueProperty().addListener(
+        this.sliderSepia.valueProperty().addListener(
             new ChangeListener<Number>()
             {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue,Number newValue)
             {
-                labelValueValue.setText(String.valueOf(newValue));
+                labelValueSepia.setText(String.valueOf(newValue));
                 double valueToSet=(double)newValue/100;
-                ca.setBrightness(valueToSet);
-                MainController.mainController.imageView.setEffect(ca);
+                sepia.setLevel(valueToSet);
+                MainController.mainController.imageView.setEffect(sepia);
             }
         });
 
-        super.setLabelToZero(this.labelValueHue);
-        super.setLabelToZero(this.labelValueSaturate);
-        super.setLabelToZero(this.labelValueValue);
-            
-        }       
-    }
-
+        super.setLabelToZero(this.labelValueGlow);
+        super.setLabelToZero(this.labelValueBlur);
+        super.setLabelToZero(this.labelValueSepia);
         
-
+        
+    }    
+    
+}

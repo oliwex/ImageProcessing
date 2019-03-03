@@ -27,6 +27,9 @@ public class MainController extends Controller implements Initializable
     
     @FXML
     private AnchorPane anchorMisc;
+    
+    @FXML
+    private AnchorPane anchorEffect;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) 
@@ -34,14 +37,15 @@ public class MainController extends Controller implements Initializable
         
         mainController = this;
         
-        super.sceneSetter("/fxml/Rgb.fxml", this.anchorRgb);
-        super.sceneSetter("/fxml/Hsv.fxml", this.anchorHsv);
-        super.sceneSetter("/fxml/Misc.fxml", this.anchorMisc);
-
+        super.sceneSetter("/fxml/Rgb.fxml", this.anchorRgb); //working
+        super.sceneSetter("/fxml/Hsv.fxml", this.anchorHsv); //working
+        super.sceneSetter("/fxml/Misc.fxml", this.anchorMisc); //working
+        super.sceneSetter("/fxml/Effect.fxml", this.anchorEffect);
+        
+        
         super.imageProcessor.setImageIntoImageView(this.imageView);
     }
 }
 
 
-//TODO::Make red/green/blue changing image color by a button
-//TODO1::Make red/green/blue changing image color by a slider going from left
+

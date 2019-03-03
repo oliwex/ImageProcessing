@@ -1,0 +1,30 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+VBox
+{
+    -fx-alignment: center;
+}
+Slider
+{
+    -fx-max-width: 250px;
+    -fx-pref-width: 250px;
+    
+}
+GridPane , AnchorPane
+{
+    -fx-pref-height: 400px;
+    -fx-pref-width: 400px;
+    -fx-min-height: 400px;
+    -fx-min-width: 400px;
+    -fx-max-height: 400px;
+    -fx-max-width: 400px; 
+}
+
+
+
+Label
+{
+    -fx-font-size: 20px;
+}

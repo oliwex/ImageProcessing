@@ -39,12 +39,12 @@ public class Controller {
     }
     protected void setLabelToZero(Label labelToSet)
     {
-        labelToSet.setText("0");
+        labelToSet.setText("0.0");
     }
     
     protected void setSlider(Slider sliderToSet)
     {
-        sliderToSet.setMin(0);
+        sliderToSet.setMin(0.0);
         sliderToSet.setMax(100);
         sliderToSet.setShowTickLabels(true);
         sliderToSet.setShowTickMarks(true);
